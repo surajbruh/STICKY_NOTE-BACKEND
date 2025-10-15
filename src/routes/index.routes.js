@@ -13,7 +13,7 @@ router.post("/api/notes/upload", async (req, res) => {
 
         res.status(201).json({
             message: "Note saved successfully",
-            Note: newNote
+            newNote
         })
     } catch (error) {
         console.error("/API/UPLOAD ENDPOINT ERROR", error.message)
@@ -28,6 +28,19 @@ router.get("/api/note/notes", async (req, res) => {
         res.status(200).json(notes)
     } catch (error) {
         console.error("/API/NOTES ENDPOINT ERROR", error.message)
+        return res.status(500).json("Something went wrong")
+    }
+})
+
+router.delete("/api/note/delete/:id", async (req, res) => {
+    try {
+        const { id } = req.params
+        if (!id) return res.status(400).json({ message: "note id is required" })
+
+        const note = await Note.findByIdAndDelete(id)
+        res.status(200).json({ message: "Note deleted successfully", note })
+    } catch (error) {
+        console.error("/API/NOTE/DELETE ENDPOINT ERROR", error.message)
         return res.status(500).json("Something went wrong")
     }
 })
