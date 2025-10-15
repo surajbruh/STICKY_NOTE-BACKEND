@@ -2,6 +2,7 @@ import dotenv from "dotenv"
 import express from "express"
 import cors from "cors"
 import connectDB from "./config/db.config.js"
+import router from "./routes/index.routes.js"
 
 //ENV VAR
 dotenv.config({
@@ -12,10 +13,15 @@ const app = express()
 const PORT = process.env.PORT
 
 // CORS
-const origin = []
+const origin = ["http://localhost:5173"]
 app.use(cors({
     origin
 }))
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+app.use("/", router)
 
 // START SERVER
 async function startServer(params) {
