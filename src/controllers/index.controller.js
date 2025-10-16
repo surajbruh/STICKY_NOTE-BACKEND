@@ -29,7 +29,7 @@ export const getNotes = async (req, res) => {
         }
 
         const notes = await Note.find()
-        
+
         //set cache
         await redisSafe.setEx("cachedNotes", 300, JSON.stringify(notes))
 
@@ -44,7 +44,6 @@ export const getNotes = async (req, res) => {
 export const deleteNote = async (req, res) => {
     try {
         const { id } = req.params
-        if (!id) return res.status(400).json({ message: "note id is required" })
 
         const note = await Note.findByIdAndDelete(id)
         await redisSafe.del("cachedNotes") //delete stale cache data
@@ -52,6 +51,28 @@ export const deleteNote = async (req, res) => {
         res.status(200).json({ message: "Note deleted successfully", note })
     } catch (error) {
         console.error("/API/NOTE/DELETE ENDPOINT ERROR", error.message)
+        return res.status(500).json("Something went wrong")
+    }
+}
+
+export const updateNote = async (req, res) => {
+    try {
+        const { id } = req.params
+        const { content } = req.body
+
+        if (!content) return res.status(400).json({ message: "Content is required" })
+
+        const note = await Note.findByIdAndUpdate(id, { content }, { new: true })
+
+        if (!note) return res.status(404).json({ message: "Note not found" })
+
+        await redisSafe.del("cachedNotes") //delete stale cache data
+        res.status(200).json({
+            message: "Note updated succesfully",
+            updatedNote: note
+        })
+    } catch (error) {
+        console.error("/API/NOTE/UPDATE ENDPOINT ERROR", error.message)
         return res.status(500).json("Something went wrong")
     }
 }
