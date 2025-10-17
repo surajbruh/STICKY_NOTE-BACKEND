@@ -1,6 +1,15 @@
 # 🗒️ Sticky Notes - Backend
 
-The **Sticky Notes Backend** is built using **Express.js**, **MongoDB**, and **Redis** to handle note management efficiently.  
+<p align="center">
+  <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white"/>
+  <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Mongoose-880000?style=for-the-badge&logo=mongoose&logoColor=white"/>
+  <img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Dotenv-ECD53F?style=for-the-badge&logo=dotenv&logoColor=black"/>
+</p>
+
+>The **Sticky Notes Backend** is built using **Express.js**, **MongoDB**, and **Redis** to handle note management efficiently.  
 It provides RESTful APIs for creating, editing, deleting, and fetching user notes.
 
 ---
@@ -106,5 +115,10 @@ Feel free to fork the repository, open issues, or submit pull requests.
 
 ## 🧑‍💻 Author
 
-**Suraj Yadav**  
+**Suraj Yadav**
+Full Stack Web Developer  
+
+💼 [LinkedIn](https://www.linkedin.com/in/suraj-yadav-b15a1b36b/)
 🔗 [GitHub](https://github.com/surajbruh)
+
+---
