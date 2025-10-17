@@ -15,7 +15,7 @@ const app = express()
 const PORT = process.env.PORT
 
 // CORS
-const origin = ["http://localhost:5173"]
+const origin = ["http://localhost:5173","https://sticky-note-frontend.vercel.app"]
 app.use(cors({
     origin
 }))
