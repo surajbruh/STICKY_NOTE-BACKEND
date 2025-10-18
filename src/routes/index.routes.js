@@ -1,12 +1,8 @@
 import express from "express"
-import { deleteNote, getNotes, pinNote, updateNote, uploadNote } from "../controllers/index.controller.js"
-import validateId from "../middleware/validateId.middleware.js"
+import noteRouter from "./note.routes.js"
 
 const router = express.Router()
-export default router
 
-router.post("/api/notes/upload", uploadNote)
-router.get("/api/note/notes", getNotes)
-router.delete("/api/note/delete/:id", validateId, deleteNote)
-router.patch("/api/note/update/:id", validateId, updateNote)
-router.patch("/api/note/pin/:id", validateId, pinNote);
+router.use("/api/notes", noteRouter)
+
+export default router

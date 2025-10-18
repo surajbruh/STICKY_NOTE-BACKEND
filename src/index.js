@@ -15,7 +15,7 @@ const app = express()
 const PORT = process.env.PORT
 
 // CORS
-const origin = ["http://localhost:5173","https://sticky-note-frontend.vercel.app"]
+const origin = ["http://localhost:5173", "https://sticky-note-frontend.vercel.app"]
 app.use(cors({
     origin
 }))
@@ -29,7 +29,7 @@ app.use("/", router)
 async function startServer(params) {
     try {
         await redisClient.connect()
-        console.log("REDIS CONNECTED")
+        console.log("🧱 REDIS CONNECTED")
 
         await connectDB()
         app.listen(PORT, () => {
@@ -43,14 +43,14 @@ startServer()
 
 //GRACEFUL SHUTDOWN
 process.on("SIGINT", async () => {
-    console.log("SERVER SHUTTING DOWN!")
+    console.log("🪧  SERVER SHUTTING DOWN!")
     try {
         await redisClient.quit()
-        console.log("REDIS CLIENT DISCONNECTED")
+        console.log("🧱 REDIS CLIENT DISCONNECTED")
 
         if (mongoose.connection.readyState === 1) {
             await mongoose.connection.close()
-            console.log("MONGO_DB CONNECTION CLOSED")
+            console.log("📊 MONGO_DB CONNECTION CLOSED")
         }
 
         setTimeout(() => process.exit(0), 250);

@@ -1,4 +1,4 @@
-import Note from "../models/noteModel.js"
+import Note from "../models/note.model.js"
 import { redisSafe } from "../utils/redisSafe.js"
 
 export const uploadNote = async (req, res) => {
