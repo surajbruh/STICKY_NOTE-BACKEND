@@ -76,3 +76,30 @@ export const updateNote = async (req, res) => {
         return res.status(500).json("Something went wrong")
     }
 }
+
+export const pinNote = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const updatedNote = await Note.findByIdAndUpdate(
+            id,
+            [{ $set: { isPinned: { $not: "$isPinned" } } }],
+            { new: true }
+        );
+
+        if (!updatedNote)
+            return res.status(404).json({ message: "Note not found" });
+
+        await redisSafe.del("cachedNotes"); // delete stale cache data
+
+        res.status(200).json({
+            message: updatedNote.isPinned
+                ? "Note pinned successfully"
+                : "Note unpinned successfully",
+            updatedNote,
+        });
+    } catch (error) {
+        console.error("/API/NOTE/PIN ENDPOINT ERROR:", error.message);
+        return res.status(500).json({ message: "Something went wrong" });
+    }
+}
