@@ -80,7 +80,7 @@ BACK/
    ```bash
    PORT=5000
    MONGO_URI=your_mongodb_connection_string
-   REDIS_URL=your_redis_connection_string
+   REDIS_PASS=your_redis_connection_string
    ```
 
 5. Start the backend server  
@@ -94,10 +94,11 @@ BACK/
 
 | Method | Endpoint | Description |
 |--------|-----------|-------------|
-| **POST** | `/api/notes/upload` | Create a new note |
-| **GET** | `/api/note/notes` | Get all notes |
-| **PUT** | `/api/note/delete/:id` | Update a note |
-| **DELETE** | `/api/note/update/:id` | Delete a note |
+| **POST** | `/api/notes` | Create a new note |
+| **GET** | `/api/notes` | Get all notes |
+| **PATCH** | `/api/notes/:id` | Update a note |
+| **DELETE** | `/api/notes/:id` | Delete a note |
+| **PATCH** | `/api/notes/:id/pin` | Pin a note |
 
 ---
 
